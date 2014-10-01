@@ -3,7 +3,17 @@ using System.Collections.Generic;
 
 public class RoomExit : MonoBehaviour {
 
+    public Vector2 displacement;
     public List<GameObject> playersTouching;
+    public RoomControl nextRoom;
+
+    public void Init(Vector2 displacement) {
+        this.displacement = displacement;
+    }
+
+    public void CameraRoomLink(RoomControl other) {
+        nextRoom = other;
+    }
 
     void OnTriggerStay(Collider other) {
         if(playersTouching == null) {
@@ -11,6 +21,15 @@ public class RoomExit : MonoBehaviour {
         }
         if(other.gameObject.CompareTag("Player") && !playersTouching.Contains(other.gameObject)) {
             playersTouching.Add(other.gameObject);
+        }
+
+        if(playersTouching.Count == GameObject.FindGameObjectsWithTag("Player").Length) {
+            foreach(GameObject alpha in playersTouching) {
+                alpha.transform.Translate(displacement, Space.World);
+            }
+            playersTouching.Clear();
+
+            GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target = nextRoom;
         }
     }
 

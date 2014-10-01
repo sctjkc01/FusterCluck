@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MainCameraControl.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\LanguageSelection.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\TypewriterEffect.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\UIButton.cs" />
@@ -150,6 +151,7 @@
      <Compile Include="Assets\PlayerControl.cs" />
      <Compile Include="Assets\RoomControl.cs" />
      <Compile Include="Assets\RoomExit.cs" />
+     <Compile Include="Assets\RoomManager.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
