@@ -9,12 +9,12 @@ public class RoomExit : MonoBehaviour {
         if(playersTouching == null) {
             playersTouching = new List<GameObject>();
         }
-        if(other.gameObject.CompareTag("Player")) {
+        if(other.gameObject.CompareTag("Player") && !playersTouching.Contains(other.gameObject)) {
             playersTouching.Add(other.gameObject);
         }
     }
 
-    void OnTriggerLeave(Collider other) {
+    void OnTriggerExit(Collider other) {
         if(playersTouching.Contains(other.gameObject)) {
             playersTouching.Remove(other.gameObject);
         }
