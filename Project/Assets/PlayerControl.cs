@@ -7,7 +7,7 @@ public enum Player {
 
 public class PlayerControl : MonoBehaviour {
 
-	private Vector2 forceDirection;
+	private Vector3 force;
 	public float speed;
 	public float MAX_SPEED; 
 
@@ -21,28 +21,28 @@ public class PlayerControl : MonoBehaviour {
 	void Move()
 	{
 
-		forceDirection = Vector2.zero;
+		force = Vector3.zero;
 
 		if (Input.GetAxis ("Vertical") > 0) {	
-			forceDirection += (Vector2.up);
+			force += (Vector3.up);
 		}
 		if (Input.GetAxis ("Horizontal") < 0) {
-			forceDirection -= (Vector2.right);
+			force -= (Vector3.right);
 		}
 		if (Input.GetAxis ("Horizontal") > 0) {
-			forceDirection += (Vector2.right);
+			force += (Vector3.right);
 		}
 		if (Input.GetAxis ("Vertical") < 0) {
-			forceDirection -= (Vector2.up);
+			force -= (Vector3.up);
 		}
-		forceDirection *= speed;
 
-		Vector2 force = Vector2.ClampMagnitude(forceDirection, MAX_SPEED);
+		force *= speed;
 
-		rigidbody2D.AddForce(force, ForceMode2D.Impulse);
+		force = Vector3.ClampMagnitude(force,MAX_SPEED);
 
-		rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, MAX_SPEED);
-				
+		this.gameObject.transform.Translate(force);
+
+				
 
 
 	}
