@@ -21,26 +21,27 @@ public class PlayerControl : MonoBehaviour {
 	void Move()
 	{
 
-		force = Vector3.zero;
-
-		if (Input.GetAxis ("Vertical") > 0) {	
-			force += (Vector3.up);
-		}
-		if (Input.GetAxis ("Horizontal") < 0) {
-			force -= (Vector3.right);
-		}
-		if (Input.GetAxis ("Horizontal") > 0) {
-			force += (Vector3.right);
-		}
-		if (Input.GetAxis ("Vertical") < 0) {
-			force -= (Vector3.up);
-		}
+		force = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
 		force *= speed;
 
-		force = Vector3.ClampMagnitude(force,MAX_SPEED);
+		force = Vector3.ClampMagnitude(force,speed);
 
-		this.gameObject.transform.Translate(force);
+		if (force != Vector3.zero)
+		{
+			this.rigidbody.AddForce(force, ForceMode.VelocityChange);
+		
+			
+		}
+		else
+		{
+			this.rigidbody.velocity = Vector3.zero;
+		}
+
+		if (this.rigidbody.velocity.magnitude > MAX_SPEED)
+		{
+			this.rigidbody.velocity = Vector3.ClampMagnitude(this.rigidbody.velocity, MAX_SPEED);
+		}
 
 				
 
