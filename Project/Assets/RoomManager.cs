@@ -10,9 +10,7 @@ public class RoomManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        puzzle = new SudokuPuzzle();
-
-        // FU TODO: do Sudoku-gen here.
+        puzzle = new SudokuPuzzle(2);
 
         List<RoomControl> rooms = new List<RoomControl>();
 
@@ -57,85 +55,57 @@ public class RoomManager : MonoBehaviour {
 
 [System.Serializable]
 public class SudokuPuzzle {
-    public SudokuChunk topLeft, topRight, bottomLeft, bottomRight;
+    public SudokuChunk[] chunks;
+    public int factorial, summation;
 
-    public SudokuPuzzle() {
-        topLeft = new SudokuChunk();
-        topRight = new SudokuChunk();
-        bottomLeft = new SudokuChunk();
-        bottomRight = new SudokuChunk();
-    }
+    public SudokuPuzzle(int size) 
+    {
+        chunks = new array[size];
+        factorial = 1;
+        summation = 0;
 
-    /// <summary>
-    /// Gets a Chunk based on an int index.  Zero is top-left, and continues in American reading-order.
-    /// </summary>
-    /// <param name="i">Int 0 - 3</param>
-    public SudokuChunk this[int i] {
-        get {
-            switch(i) {
-                case 0:
-                    return topLeft;
-                case 1:
-                    return topRight;
-                case 2:
-                    return bottomLeft;
-                case 3:
-                    return bottomRight;
-                default:
-                    throw new Exception("Bad Sudoku Puzzle index!");
-            }
+        for (int i = 0; i < size; i++ )
+        {
+            factorial *= i;
+            summation += i;
+            chunks[i] = new SudokuChunk(size);
         }
     }
 }
 
 [System.Serializable]
 public class SudokuChunk {
-    public int topLeft, topRight, bottomLeft, bottomRight;
-    public RoomControl tlRoom, trRoom, blRoom, brRoom;
+    public int[] tiles;
 
-    public SudokuChunk() {
-        topLeft = 0;
-        topRight = 0;
-        bottomLeft = 0;
-        bottomRight = 0;
+    public SudokuChunk(int size)
+    {
+        tiles = new array[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            tiles[i] = 0;
+        }
     }
 
-    /// <summary>
-    /// Gets a value based on an int index.  Zero is top-left, and continues in American reading-order.
-    /// </summary>
-    /// <param name="i">Int 0 - 3</param>
-    public int this[int i] {
-        get {
-            switch(i) {
-                case 0:
-                    return topLeft;
-                case 1:
-                    return topRight;
-                case 2:
-                    return bottomLeft;
-                case 3:
-                    return bottomRight;
-                default:
-                    throw new Exception("Bad Sudoku Chunk index!");
-            }
+    public bool ChunkTest()
+    {
+        int sum = 0;
+        int fact = 1;
+
+        for (int i = 0; i < tiles.length(); i++)
+        {
+            sum += tiles[i];
+            fact *= tiles[i];
         }
-        set {
-            switch(i) {
-                case 0:
-                    topLeft = value;
-                    break;
-                case 1:
-                    topRight = value;
-                    break;
-                case 2:
-                    bottomLeft = value;
-                    break;
-                case 3:
-                    bottomRight = value;
-                    break;
-                default:
-                    throw new Exception("Bad Sudoku Chunk index!");
-            }
+
+        if (sum == summation && fact == factorial)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
         }
     }
 }
