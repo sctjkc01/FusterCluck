@@ -9,7 +9,10 @@ public class PlayerControl : MonoBehaviour {
 
 	private Vector3 force;
 	public float speed;
-	public float MAX_SPEED; 
+	public float MAX_SPEED;
+	private Vector3 _refranceSpeed = Vector3.zero;
+
+	public float rotateSpeed = 30f;
 
     // Update is called once per frame
     void Update() {
@@ -21,12 +24,15 @@ public class PlayerControl : MonoBehaviour {
 	void Move()
 	{
 
-		force = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+		force = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
 		force *= speed;
 
 		force = Vector3.ClampMagnitude(force,speed);
 
+		rigidbody.velocity = force;
+
+		/*
 		if (force != Vector3.zero)
 		{
 			this.rigidbody.AddForce(force, ForceMode.VelocityChange);
@@ -42,9 +48,16 @@ public class PlayerControl : MonoBehaviour {
 		{
 			this.rigidbody.velocity = Vector3.ClampMagnitude(this.rigidbody.velocity, MAX_SPEED);
 		}
+		 */
 
-				
 
+		//this.gameObject.transform.up = Vector3.SmoothDamp(this.gameObject.transform.up, rigidbody.velocity.normalized, ref _refranceSpeed, rotateSpeed);
 
+		Debug.Log(rigidbody.velocity.normalized);
+
+		if (rigidbody.velocity.normalized != Vector3.zero)
+		{
+			this.gameObject.transform.up = rigidbody.velocity.normalized;
+		}
 	}
 }
