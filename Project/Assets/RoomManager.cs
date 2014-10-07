@@ -4,47 +4,33 @@ using System;
 using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour {
+    public int puzzleSize;
+
     public SudokuPuzzle puzzle;
     public List<RoomTheme> themes;
 
-    // Use this for initialization
     void Start() {
+        Initialize(); // In case we want to allow the user to change the size of the puzzle...
+    }
 
-        puzzle = new SudokuPuzzle(2);
 
-        List<RoomControl> rooms = new List<RoomControl>();
+    void Initialize() {
 
-        for(int cluster = 0; cluster < 4; cluster++) {
+        puzzle = new SudokuPuzzle(puzzleSize);
+
+        for(int cluster = 0; cluster < puzzleSize * puzzleSize; cluster++) {
             RoomTheme thisTheme = Pick(themes);
 
-            Vector3 topLeft = new Vector3((cluster % 2) * 20f, (cluster > 1 ? -20f : 0f), 0f);
+            for(int i = 0; i < puzzleSize * puzzleSize; i++) {
+                int x = i % puzzleSize + (cluster % puzzleSize) * puzzleSize;
+                int y = i / puzzleSize + (cluster / puzzleSize) * puzzleSize;
 
-            RoomControl newbie = (GameObject.Instantiate(Pick(thisTheme.rooms), topLeft, Quaternion.identity) as GameObject).GetComponent<RoomControl>();
-            newbie.Init(puzzle, cluster, 0);
-            puzzle[cluster].tlRoom = newbie;
-            rooms.Add(newbie);
-
-            newbie = (GameObject.Instantiate(Pick(thisTheme.rooms), topLeft + new Vector3(10f, 0f), Quaternion.identity) as GameObject).GetComponent<RoomControl>();
-            newbie.Init(puzzle, cluster, 1);
-            puzzle[cluster].trRoom = newbie;
-            rooms.Add(newbie);
-
-            newbie = (GameObject.Instantiate(Pick(thisTheme.rooms), topLeft + new Vector3(0f, -10f), Quaternion.identity) as GameObject).GetComponent<RoomControl>();
-            newbie.Init(puzzle, cluster, 2);
-            puzzle[cluster].blRoom = newbie;
-            rooms.Add(newbie);
-
-            newbie = (GameObject.Instantiate(Pick(thisTheme.rooms), topLeft + new Vector3(10f, -10f), Quaternion.identity) as GameObject).GetComponent<RoomControl>();
-            newbie.Init(puzzle, cluster, 3);
-            puzzle[cluster].brRoom = newbie;
-            rooms.Add(newbie);
+                RoomControl newbie = ((GameObject)GameObject.Instantiate(Pick(thisTheme.rooms), new Vector3(10f * x, -10f * y, 0f), Quaternion.identity)).GetComponent<RoomControl>();
+                newbie.Init(puzzle, x, y);
+            }
         }
 
-        foreach(RoomControl alpha in rooms) {
-            alpha.CameraRoomLink();
-        }
-
-        GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target = rooms[0].GetComponent<RoomControl>();
+        GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target = Vector2.zero;
     }
 
     T Pick<T>(List<T> from) {
@@ -58,53 +44,43 @@ public class SudokuPuzzle {
     public int[,] tiles;
     public int factorial, summation, size;
 
-    public SudokuPuzzle(int s) 
-    {
+    public SudokuPuzzle(int s) {
         size = s;
-        tiles = new array[size,size];
+        tiles = new int[size, size];
         factorial = 1;
         summation = 0;
 
-        for (int i = 0; i < size; i++ )
-        {
+        for(int i = 0; i < size; i++) {
             factorial *= i;
             summation += i;
 
-            for (int j = 0; j < size; j++)
-            {
-                tiles[i,j] = 0;
+            for(int j = 0; j < size; j++) {
+                tiles[i, j] = 0;
             }
         }
     }
 
-    public int this[int i, int j]
-    {
-        get
-        {
+    public int this[int i, int j] {
+        get {
             return tiles[i, j];
         }
 
-        set
-        {
+        set {
             tiles[i, j] = value;
         }
     }
 
-    bool colTest()
-    {
-        for (int i = 0; i < size; i++)
-        {
+    bool colTest() {
+        for(int i = 0; i < size; i++) {
             var sum = 0;
             var fact = 1;
 
-            for (int j = 0; j < size; j++)
-            {
-                sum += tiles[i][j];
-                fact *= tiles[i][j];
+            for(int j = 0; j < size; j++) {
+                sum += tiles[i, j];
+                fact *= tiles[i, j];
             }
 
-            if (sum != summation && fact != factorial)
-            {
+            if(sum != summation && fact != factorial) {
                 return false;
             }
         }
@@ -112,21 +88,17 @@ public class SudokuPuzzle {
         return true;
     }
 
-    bool rowTest()
-    {
-        for (int j = 0; j< size; j++)
-        {
+    bool rowTest() {
+        for(int j = 0; j < size; j++) {
             var sum = 0;
             var fact = 1;
 
-            for (int i = 0; i < size; i++)
-            {
-                sum += tiles[i][j];
-                fact *= tiles[i][j];
+            for(int i = 0; i < size; i++) {
+                sum += tiles[i, j];
+                fact *= tiles[i, j];
             }
 
-            if (sum != summation && fact != factorial)
-            {
+            if(sum != summation && fact != factorial) {
                 return false;
             }
         }

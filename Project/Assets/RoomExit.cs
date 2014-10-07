@@ -5,14 +5,9 @@ public class RoomExit : MonoBehaviour {
 
     public Vector2 displacement;
     public List<GameObject> playersTouching;
-    public RoomControl nextRoom;
 
     public void Init(Vector2 displacement) {
         this.displacement = displacement;
-    }
-
-    public void CameraRoomLink(RoomControl other) {
-        nextRoom = other;
     }
 
     void OnTriggerStay(Collider other) {
@@ -29,7 +24,7 @@ public class RoomExit : MonoBehaviour {
             }
             playersTouching.Clear();
 
-            GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target = nextRoom;
+            GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target += displacement * 2f;
         }
     }
 

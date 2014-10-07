@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour {
 	private Vector3 force;
 	public float speed;
 	public float MAX_SPEED;
-	private Vector3 _refranceSpeed = Vector3.zero;
+	private Vector3 _referenceSpeed = Vector3.zero;
 
 	public float rotateSpeed = 30f;
 
