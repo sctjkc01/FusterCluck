@@ -55,12 +55,13 @@ public class RoomManager : MonoBehaviour {
 
 [System.Serializable]
 public class SudokuPuzzle {
-    public SudokuChunk[] chunks;
-    public int factorial, summation;
+    public int[,] tiles;
+    public int factorial, summation, size;
 
-    public SudokuPuzzle(int size) 
+    public SudokuPuzzle(int s) 
     {
-        chunks = new array[size];
+        size = s;
+        tiles = new array[size,size];
         factorial = 1;
         summation = 0;
 
@@ -68,45 +69,69 @@ public class SudokuPuzzle {
         {
             factorial *= i;
             summation += i;
-            chunks[i] = new SudokuChunk(size);
+
+            for (int j = 0; j < size; j++)
+            {
+                tiles[i,j] = 0;
+            }
         }
     }
-}
 
-[System.Serializable]
-public class SudokuChunk {
-    public int[] tiles;
-
-    public SudokuChunk(int size)
+    public int this[int i, int j]
     {
-        tiles = new array[size];
+        get
+        {
+            return tiles[i, j];
+        }
 
+        set
+        {
+            tiles[i, j] = value;
+        }
+    }
+
+    bool colTest()
+    {
         for (int i = 0; i < size; i++)
         {
-            tiles[i] = 0;
+            var sum = 0;
+            var fact = 1;
+
+            for (int j = 0; j < size; j++)
+            {
+                sum += tiles[i][j];
+                fact *= tiles[i][j];
+            }
+
+            if (sum != summation && fact != factorial)
+            {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    public bool ChunkTest()
+    bool rowTest()
     {
-        int sum = 0;
-        int fact = 1;
-
-        for (int i = 0; i < tiles.length(); i++)
+        for (int j = 0; j< size; j++)
         {
-            sum += tiles[i];
-            fact *= tiles[i];
+            var sum = 0;
+            var fact = 1;
+
+            for (int i = 0; i < size; i++)
+            {
+                sum += tiles[i][j];
+                fact *= tiles[i][j];
+            }
+
+            if (sum != summation && fact != factorial)
+            {
+                return false;
+            }
         }
 
-        if (sum == summation && fact == factorial)
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        return true;
     }
 }
 
