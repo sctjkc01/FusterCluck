@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BaseEnemy.cs">
     <Files>
-      <File FileName="..\..\splattershmup\Assets\Resources\Scripts\Player.cs" Line="121" Column="9" />
-      <File FileName="Assets\PlayerControl.cs" Line="45" Column="83" />
+      <File FileName="Assets\BaseEnemy.cs" Line="18" Column="1" />
+      <File FileName="Assets\PlayerControl.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
