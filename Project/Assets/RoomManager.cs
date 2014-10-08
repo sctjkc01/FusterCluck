@@ -51,8 +51,8 @@ public class SudokuPuzzle {
         summation = 0;
 
         for(int i = 0; i < size; i++) {
-            factorial *= i;
-            summation += i;
+            factorial *= (i + 1);
+            summation += (i + 1);
 
             for(int j = 0; j < size; j++) {
                 tiles[i, j] = 0;
