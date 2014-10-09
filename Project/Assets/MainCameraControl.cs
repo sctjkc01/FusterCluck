@@ -7,7 +7,6 @@ public class MainCameraControl : MonoBehaviour {
     public UI2DSprite URHereMarker;
 
     void Update() {
-        if(target == null) return;
 
         Vector3 targetPos = (Vector3)target + new Vector3(0f, 0f, -17.525f);
 

@@ -32,12 +32,11 @@ public class RoomControl : MonoBehaviour {
         SouthDoor.gameObject.SetActive(this.y != puzzleRef.size * puzzleRef.size - 1);
         #endregion
 
-        GameObject.Find("Minimap").GetComponent<MinimapControl>().Init(puzzleRef);
+        minimapNumber = GameObject.Find("Minimap").GetComponent<MinimapControl>().UILabels[x, y];
     }
 
     void Update() {
 		//int myNumber =0;
-
 
         int myNumber = puzzleRef[x, y];
         if(minimapNumber != null) {

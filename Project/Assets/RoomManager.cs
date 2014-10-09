@@ -17,6 +17,7 @@ public class RoomManager : MonoBehaviour {
     void Initialize() {
 
         puzzle = new SudokuPuzzle(puzzleSize);
+        GameObject.Find("Minimap").GetComponent<MinimapControl>().Init(puzzle);
 
         for(int cluster = 0; cluster < puzzleSize * puzzleSize; cluster++) {
             RoomTheme thisTheme = Pick(themes);
@@ -46,7 +47,7 @@ public class SudokuPuzzle {
 
     public SudokuPuzzle(int s) {
         size = s;
-        tiles = new int[size, size];
+        tiles = new int[size * size, size * size];
         factorial = 1;
         summation = 0;
 
@@ -62,9 +63,7 @@ public class SudokuPuzzle {
 
     public int this[int i, int j] {
         get {
-			//Debug.Log(tiles.Length);
-           // return tiles[i, j];
-			return 0;
+			return tiles[i, j];
         }
 
         set {
