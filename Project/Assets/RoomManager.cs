@@ -73,8 +73,8 @@ public class SudokuPuzzle {
 
     bool colTest() {
         for(int i = 0; i < size; i++) {
-            var sum = 0;
-            var fact = 1;
+            int sum = 0;
+            int fact = 1;
 
             for(int j = 0; j < size; j++) {
                 sum += tiles[i, j];
@@ -91,8 +91,8 @@ public class SudokuPuzzle {
 
     bool rowTest() {
         for(int j = 0; j < size; j++) {
-            var sum = 0;
-            var fact = 1;
+            int sum = 0;
+            int fact = 1;
 
             for(int i = 0; i < size; i++) {
                 sum += tiles[i, j];
@@ -106,6 +106,31 @@ public class SudokuPuzzle {
 
         return true;
     }
+
+    bool chunkTest() {
+	{
+	    for (int i = 0; i < 9; i += 3)
+	    {
+	        for (int j = 0; j < 9; j += 3)
+	        {
+	            int sum = 0;
+	            int fact = 1;
+
+	            for (int k = 0; k < 3; k++) {
+	                for (var l = 0; l < 3; l++) {
+	                    sum += tiles[i + k, j + l];
+	                    fact *= tiles[i + k, k + l];
+	                }
+	            }
+
+	            if (sum != summation && fact != factorial) {
+	                return false;
+	            }
+	        }
+	    }
+
+	    return true;
+	}
 }
 
 [System.Serializable]
