@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BaseEnemy.cs" />
+     <Compile Include="Assets\ButtonIncrement.cs" />
      <Compile Include="Assets\EnemyBullet.cs" />
      <Compile Include="Assets\MainCameraControl.cs" />
      <Compile Include="Assets\MinimapControl.cs" />

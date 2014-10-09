@@ -10,6 +10,7 @@ public class RoomControl : MonoBehaviour {
     private SudokuPuzzle puzzleRef;
     private int x, y;
     public RoomExit NorthDoor, SouthDoor, WestDoor, EastDoor;
+    public TextMesh RoomNumber;
     public UILabel minimapNumber;
 
     public void Init(SudokuPuzzle puzz, int x, int y) {
@@ -42,13 +43,14 @@ public class RoomControl : MonoBehaviour {
         if(minimapNumber != null) {
             minimapNumber.text = (myNumber == 0 ? " " : "" + myNumber);
         }
+        RoomNumber.text = (myNumber == 0 ? " " : "" + myNumber);
     }
 
     public void IncrementNumber() {
         int myNumber = puzzleRef[x, y];
         myNumber++;
-        if(myNumber > 5) {
-            myNumber -= 4;
+        if(myNumber > puzzleRef.size * puzzleRef.size) {
+            myNumber -= puzzleRef.size * puzzleRef.size;
         }
         puzzleRef[x, y] = myNumber;
     }
