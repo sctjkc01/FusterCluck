@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RushEnemy : BaseEnemy {
 
+[RequireComponent(typeof(BaseEnemy))]
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody))]
+public class RushEnemy : MonoBehaviour {
+
+	public BaseEnemy enemy;
 	Vector3 dv = Vector3.zero;
 	CharacterController characterController;
 
 	// Use this for initialization
 	void Start () {
-		characterController = gameObject.GetComponent<CharacterController>();
-		base.Start();
+		this.enemy = gameObject.GetComponent<BaseEnemy>();
 	}
 	
 	// Update is called once per frame
@@ -18,9 +22,11 @@ public class RushEnemy : BaseEnemy {
 	}
 
 	void Move(){
-		dv = playerPos - transform.position;
-		dv = dv.normalized * moveSpeed;
-		dv -= characterController.velocity;
+		dv = enemy.playerPos - transform.position;
+		dv = dv.normalized * enemy.moveSpeed;
+		dv -= rigidbody.velocity;
 		dv.y = 0;
+
+		rigidbody.velocity = dv;
 	}
 }
