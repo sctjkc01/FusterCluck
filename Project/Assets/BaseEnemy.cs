@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class BaseEnemy : MonoBehaviour {
+public class BaseEnemy : MonoBehaviour {
 
 	//Basic stuff
 	public int hitPoints = 20;
@@ -11,7 +11,7 @@ public abstract class BaseEnemy : MonoBehaviour {
 	public Vector3 playerPos;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 
 	}
 }
