@@ -62,7 +62,9 @@ public class SudokuPuzzle {
 
     public int this[int i, int j] {
         get {
-            return tiles[i, j];
+			//Debug.Log(tiles.Length);
+           // return tiles[i, j];
+			return 0;
         }
 
         set {

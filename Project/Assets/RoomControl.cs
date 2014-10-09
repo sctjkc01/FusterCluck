@@ -36,6 +36,9 @@ public class RoomControl : MonoBehaviour {
     }
 
     void Update() {
+		//int myNumber =0;
+
+
         int myNumber = puzzleRef[x, y];
         if(minimapNumber != null) {
             minimapNumber.text = (myNumber == 0 ? " " : "" + myNumber);
