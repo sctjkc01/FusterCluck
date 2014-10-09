@@ -5,6 +5,15 @@ public class MainCameraControl : MonoBehaviour {
 
     public Vector2 target;
     public UI2DSprite URHereMarker;
+    public int URHereMarkerTargetX, URHereMarkerTargetY;
+
+    private MinimapControl mmc;
+
+    void Start() {
+        mmc = GameObject.Find("Minimap").GetComponent<MinimapControl>();
+        URHereMarkerTargetX = 0;
+        URHereMarkerTargetY = 0;
+    }
 
     void Update() {
 
@@ -16,12 +25,12 @@ public class MainCameraControl : MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10f);
         }
 
-        //targetPos = target.minimapNumber.transform.position;
+        targetPos = mmc.UILabels[URHereMarkerTargetX, URHereMarkerTargetY].transform.position;
 
-        //if(Vector3.Distance(URHereMarker.transform.position, targetPos) < 0.01f) {
-        //    URHereMarker.transform.position = targetPos;
-        //} else {
-        //    URHereMarker.transform.position = Vector3.Lerp(URHereMarker.transform.position, targetPos, Time.deltaTime * 10f);
-        //}
+        if(Vector3.Distance(URHereMarker.transform.position, targetPos) < 0.01f) {
+            URHereMarker.transform.position = targetPos;
+        } else {
+            URHereMarker.transform.position = Vector3.Lerp(URHereMarker.transform.position, targetPos, Time.deltaTime * 10f);
+        }
     }
 }
