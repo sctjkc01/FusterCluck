@@ -28,6 +28,9 @@ public class RoomManager : MonoBehaviour {
 
                 RoomControl newbie = ((GameObject)GameObject.Instantiate(Pick(thisTheme.rooms), new Vector3(10f * x, -10f * y, 0f), Quaternion.identity)).GetComponent<RoomControl>();
                 newbie.Init(puzzle, x, y);
+                if(!puzzle.canChange[x, y]) {
+                    Destroy(newbie.transform.FindChild("Button").gameObject);
+                }
             }
         }
 

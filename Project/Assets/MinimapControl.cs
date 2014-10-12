@@ -10,6 +10,7 @@ public class MinimapControl : MonoBehaviour {
 
     public void Init(SudokuPuzzle puzzleRef) {
         int size = puzzleRef.size;
+        size = Mathf.RoundToInt(Mathf.Pow(size, 0.5f));
         UILabels = new UILabel[size * size, size * size];
 
         UIWidget widget = GetComponent<UIWidget>();
