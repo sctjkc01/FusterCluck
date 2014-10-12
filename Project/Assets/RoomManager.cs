@@ -43,11 +43,13 @@ public class RoomManager : MonoBehaviour {
 [System.Serializable]
 public class SudokuPuzzle {
     public int[,] tiles;
+    public bool[,] canChange;
     public int factorial, summation, size;
 
     public SudokuPuzzle(int s) {
         size = s * s;
         tiles = new int[size, size];
+        canChange = new bool[size, size];
         factorial = 1;
         summation = 0;
 
@@ -57,6 +59,7 @@ public class SudokuPuzzle {
 
             for(int j = 0; j < size; j++) {
                 tiles[i, j] = 0;
+                canChange[i, j] = true;
             }
         }
     }
@@ -70,6 +73,28 @@ public class SudokuPuzzle {
             tiles[i, j] = value;
         }
     }
+
+    void createPuzzle()
+	{
+	    for (int i = 1; i < size; i++)
+	    {
+	        bool check = false;
+
+            do
+            {
+                int cellX = Random.Range(1, size + 1);
+                int cellY = Random.Range(1, size + 1);
+
+                if (canChange[cellX, cellY] != false)
+                {
+                    canChange[cellX, cellY] = false;
+                    tiles[cellX, cellY] = i;
+                    check = true;
+                }
+            }
+            while (!check);
+	    }
+	}
 
     bool colTest() {
         for(int i = 0; i < size; i++) {
