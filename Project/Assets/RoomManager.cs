@@ -46,8 +46,8 @@ public class SudokuPuzzle {
     public int factorial, summation, size;
 
     public SudokuPuzzle(int s) {
-        size = s;
-        tiles = new int[size * size, size * size];
+        size = s * s;
+        tiles = new int[size, size];
         factorial = 1;
         summation = 0;
 
@@ -107,11 +107,11 @@ public class SudokuPuzzle {
         return true;
     }
 
-    bool chunkTest() {
-	{
-	    for (int i = 0; i < 9; i += 3)
+    bool chunkTest() 
+    {
+	    for (int i = 0; i < size; i += Math.Sqrt(size))
 	    {
-	        for (int j = 0; j < 9; j += 3)
+	        for (int j = 0; j < size; j += Math.Sqrt(size))
 	        {
 	            int sum = 0;
 	            int fact = 1;
