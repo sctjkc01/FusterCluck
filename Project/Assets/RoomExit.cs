@@ -6,6 +6,7 @@ public class RoomExit : MonoBehaviour {
     public Vector2 displacement;
     public List<GameObject> playersTouching;
     private MainCameraControl mcc;
+    public LayerMask WhatIsRoom;
 
     public void Init(Vector2 displacement) {
         this.displacement = displacement;
@@ -28,6 +29,11 @@ public class RoomExit : MonoBehaviour {
             mcc.target += displacement * 2f;
             mcc.URHereMarkerTargetX += Mathf.RoundToInt(displacement.x * 0.2f);
             mcc.URHereMarkerTargetY -= Mathf.RoundToInt(displacement.y * 0.2f);
+        }
+
+        Collider[] rooms = Physics.OverlapSphere(displacement * 2f, 2.0f, WhatIsRoom);
+        foreach(Collider alpha in rooms) {
+            alpha.SendMessageUpwards("SpawnEnemies");
         }
     }
 
