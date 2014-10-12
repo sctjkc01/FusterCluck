@@ -9,6 +9,9 @@ public class PlayerControl : MonoBehaviour {
 
 	private Vector3 force;
 	public float speed;
+	public float ATTACKTIME;
+
+	private float _attackTimer;
 
 	public GameObject attackBox;
 
@@ -16,9 +19,36 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+		Attack();
+
 		Move ();
         
     }
+
+	void Attack()
+	{
+		if (!attackBox.activeSelf)
+		{
+			Debug.Log("boop");
+			if (Input.GetButton("Fire1"))
+			{
+				attackBox.SetActive(true);
+				_attackTimer = ATTACKTIME;
+			}
+		}
+
+
+		if(_attackTimer <= 0)
+		{
+			attackBox.SetActive(false);
+		}
+		else
+		{
+			_attackTimer -= Time.deltaTime;
+		}
+
+
+	}
 
 	void Move()
 	{
@@ -50,7 +80,7 @@ public class PlayerControl : MonoBehaviour {
 		 */
 
 
-		Debug.Log(rigidbody.velocity.normalized);
+		//Debug.Log(rigidbody.velocity.normalized);
 
 		if (rigidbody.velocity.normalized != Vector3.zero)
 		{
