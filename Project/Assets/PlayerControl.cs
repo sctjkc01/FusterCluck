@@ -9,10 +9,9 @@ public class PlayerControl : MonoBehaviour {
 
 	private Vector3 force;
 	public float speed;
-	public float MAX_SPEED;
-	private Vector3 _referenceSpeed = Vector3.zero;
 
-	public float rotateSpeed = 30f;
+	public GameObject attackBox;
+
 
     // Update is called once per frame
     void Update() {
@@ -50,8 +49,6 @@ public class PlayerControl : MonoBehaviour {
 		}
 		 */
 
-
-		//this.gameObject.transform.up = Vector3.SmoothDamp(this.gameObject.transform.up, rigidbody.velocity.normalized, ref _refranceSpeed, rotateSpeed);
 
 		Debug.Log(rigidbody.velocity.normalized);
 
