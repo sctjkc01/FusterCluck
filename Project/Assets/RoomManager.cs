@@ -109,15 +109,15 @@ public class SudokuPuzzle {
 
     bool chunkTest() 
     {
-	    for (int i = 0; i < size; i += Math.Sqrt(size))
+	    for (int i = 0; i < size; i += (int)Math.Sqrt(size))
 	    {
-	        for (int j = 0; j < size; j += Math.Sqrt(size))
+	        for (int j = 0; j < size; j += (int)Math.Sqrt(size))
 	        {
 	            int sum = 0;
 	            int fact = 1;
 
-	            for (int k = 0; k < 3; k++) {
-	                for (var l = 0; l < 3; l++) {
+	            for (int k = 0; k < size; k++) {
+	                for (var l = 0; l < size; l++) {
 	                    sum += tiles[i + k, j + l];
 	                    fact *= tiles[i + k, k + l];
 	                }
