@@ -28,9 +28,9 @@ public class RoomControl : MonoBehaviour {
 
         #region DoorActive-Setting
         WestDoor.gameObject.SetActive(this.x != 0);
-        EastDoor.gameObject.SetActive(this.x != puzzleRef.size * puzzleRef.size - 1);
+        EastDoor.gameObject.SetActive(this.x != puzzleRef.size - 1);
         NorthDoor.gameObject.SetActive(this.y != 0);
-        SouthDoor.gameObject.SetActive(this.y != puzzleRef.size * puzzleRef.size - 1);
+        SouthDoor.gameObject.SetActive(this.y != puzzleRef.size - 1);
         #endregion
 
         minimapNumber = GameObject.Find("Minimap").GetComponent<MinimapControl>().UILabels[x, y];
