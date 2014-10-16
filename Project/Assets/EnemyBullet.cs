@@ -15,4 +15,18 @@ public class EnemyBullet : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            // When implemented: player.GetComponent<PlayerControl>().DealDamage(); 
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
