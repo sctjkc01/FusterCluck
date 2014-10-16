@@ -36,7 +36,7 @@ public class RoomExit : MonoBehaviour {
             Destroy(alpha);
         }
 
-        Collider[] rooms = Physics.OverlapSphere(displacement * 2f, 2.0f, WhatIsRoom);
+        Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 2f, 2.0f, WhatIsRoom);
         Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
         foreach(Collider alpha in rooms) {
             Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
