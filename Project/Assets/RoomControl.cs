@@ -40,6 +40,9 @@ public class RoomControl : MonoBehaviour {
 		//int myNumber =0;
         try {
             int myNumber = puzzleRef[x, y];
+            if(myNumber != 0) {
+                Debug.Log("My number is " + myNumber + "!", this.gameObject);
+            }
             if(minimapNumber != null) {
                 minimapNumber.text = (myNumber == 0 ? " " : "" + myNumber);
             }

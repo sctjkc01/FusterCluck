@@ -65,6 +65,8 @@ public class SudokuPuzzle {
                 canChange[i, j] = true;
             }
         }
+
+        createPuzzle();
     }
 
     public int this[int i, int j] {
@@ -79,14 +81,14 @@ public class SudokuPuzzle {
 
     void createPuzzle()
 	{
-	    for (int i = 1; i < size; i++)
+	    for (int i = 1; i <= size; i++)
 	    {
 	        bool check = false;
 
             do
             {
-                int cellX = Random.Range(1, size + 1);
-                int cellY = Random.Range(1, size + 1);
+                int cellX = Random.Range(0, size);
+                int cellY = Random.Range(0, size);
 
                 if (canChange[cellX, cellY] != false)
                 {

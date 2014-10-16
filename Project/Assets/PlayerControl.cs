@@ -64,7 +64,6 @@ public class PlayerControl : MonoBehaviour {
 
 		//Animation stuff
         if(Mathf.Abs(horizontal) > 0.05 || Mathf.Abs(vertical) > 0.05) {
-            Debug.Log("Walking...");
             animator.SetBool("Walking", true);
             animator.SetFloat("DirX", horizontal);
             animator.SetFloat("DirY", vertical);
