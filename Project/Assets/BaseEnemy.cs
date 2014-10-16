@@ -13,7 +13,7 @@ public class BaseEnemy : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
-
+		playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 	}
 
 	public void update () 

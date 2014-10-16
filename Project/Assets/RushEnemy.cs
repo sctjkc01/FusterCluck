@@ -8,7 +8,6 @@ public class RushEnemy : MonoBehaviour {
 
 	public BaseEnemy enemy;
 	Vector3 dv = Vector3.zero;
-	CharacterController characterController;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +23,7 @@ public class RushEnemy : MonoBehaviour {
 		dv = enemy.playerPos - transform.position;
 		dv = dv.normalized * enemy.moveSpeed;
 		dv -= rigidbody.velocity;
-		dv.y = 0;
+		dv.z = 0;
 
 		rigidbody.AddForce(dv, ForceMode.Impulse);
 	}

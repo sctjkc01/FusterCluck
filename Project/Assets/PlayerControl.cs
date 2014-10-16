@@ -15,6 +15,8 @@ public class PlayerControl : MonoBehaviour {
 
 	public GameObject attackBox;
 
+	public Animator animator = this.GetComponent<playerAnimator>();
+
 
     // Update is called once per frame
     void Update() {
@@ -52,8 +54,61 @@ public class PlayerControl : MonoBehaviour {
 
 	void Move()
 	{
+		var horizontal = Input.GetAxisRaw("Horizontal");
+		var vertical = Input.GetAxisRaw("Vertical");
 
-		force = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+		Debug.Log("moving");
+
+		//Animation stuff
+		if(horizontal > 0)
+		{
+			Debug.Log("Moving right");
+			if(vertical > 0)
+			{
+				animator.SetInteger("Direction", 1);
+			}
+			else if(vertical < 0)
+			{
+				animator.SetInteger("Direction", 3);
+			}
+			else
+			{
+				animator.SetInteger("Direction", 2);
+			}
+		}
+		else if (horizontal < 0)
+		{
+			if(vertical > 0)
+			{
+				animator.SetInteger("Direction", 7);
+			}
+			else if(vertical < 0)
+			{
+				animator.SetInteger("Direction", 5);
+			}
+			else
+			{
+				animator.SetInteger("Direction", 6);
+			}
+		}
+		else
+		{
+			if(vertical > 0)
+			{
+				animator.SetInteger("Direction", 0);
+			}
+			else if(vertical < 0)
+			{
+				animator.SetInteger("Direction", 4);
+			}
+			else
+			{
+				animator.SetInteger("Direction", 0);
+			}
+		}
+
+
+		force = new Vector3(horizontal, vertical, 0);
 
 		force *= speed;
 
@@ -81,7 +136,7 @@ public class PlayerControl : MonoBehaviour {
 
 
 		//Debug.Log(rigidbody.velocity.normalized);
-
+		
 		if (rigidbody.velocity.normalized != Vector3.zero)
 		{
 			this.gameObject.transform.up = rigidbody.velocity.normalized;
