@@ -153,6 +153,7 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\PlayerAttack.cs" />
      <Compile Include="Assets\PlayerControl.cs" />
      <Compile Include="Assets\RoomControl.cs" />
      <Compile Include="Assets\RoomExit.cs" />
