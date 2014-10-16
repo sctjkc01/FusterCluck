@@ -20,6 +20,7 @@ public class EnemyBullet : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+			Debug.Log ("hit");
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             // When implemented: player.GetComponent<PlayerControl>().DealDamage(); 
             Destroy(this.gameObject);
