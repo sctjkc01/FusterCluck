@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == 12)
+		if (collision.gameObject.tag.Equals("Enemy"))
 		{
 			Destroy(collision.gameObject);
 		}
