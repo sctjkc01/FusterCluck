@@ -13,16 +13,6 @@ public class EnemySpawner : MonoBehaviour {
 
     void SpawnEnemies() {
         int qty = Random.Range(2, 5); //  2, 3, or 4.
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject g in enemies)
-        {
-            Destroy(g);
-        }
-        foreach (GameObject g in bullets)
-        {
-            Destroy(g);
-        }
         for(int i = 0; i < qty; i++) {
             Vector3 location = transform.position + new Vector3(Random.Range(-4.0f, 4.0f), Random.Range(-4.0f, 4.0f), 0.0f);
             Debug.Log("I want to see an enemy here: " + location);
