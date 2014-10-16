@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour {
 	{
 		if (!attackBox.activeSelf)
 		{
-			Debug.Log("boop");
+			//Debug.Log("boop");
 			if (Input.GetButton("Fire1"))
 			{
 				attackBox.SetActive(true);

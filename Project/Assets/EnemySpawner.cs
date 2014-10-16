@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour {
 
         for(int i = 0; i < qty; i++) {
             Vector3 location = transform.position + new Vector3(Random.Range(-4.0f, 4.0f), Random.Range(-4.0f, 4.0f), 0.0f);
+            Debug.Log("I want to see an enemy here: " + location);
             if (Random.Range(0.0f, 1.0f) >= 0.5)
             {
                 Instantiate(enemyType1, location, Quaternion.identity);
