@@ -15,8 +15,11 @@ public class PlayerControl : MonoBehaviour {
 
 	public GameObject attackBox;
 
-	public Animator animator = this.GetComponent<playerAnimator>();
+	public Animator animator;
 
+	void Start(){
+		animator = this.GetComponent<Animator>();
+	}
 
     // Update is called once per frame
     void Update() {
@@ -54,15 +57,14 @@ public class PlayerControl : MonoBehaviour {
 
 	void Move()
 	{
-		var horizontal = Input.GetAxisRaw("Horizontal");
-		var vertical = Input.GetAxisRaw("Vertical");
+		float horizontal = Input.GetAxisRaw("Horizontal");
+		float vertical = Input.GetAxisRaw("Vertical");
 
-		Debug.Log("moving");
+		Debug.Log ("H: " + horizontal + ", V: " + vertical);
 
 		//Animation stuff
 		if(horizontal > 0)
 		{
-			Debug.Log("Moving right");
 			if(vertical > 0)
 			{
 				animator.SetInteger("Direction", 1);
@@ -139,7 +141,7 @@ public class PlayerControl : MonoBehaviour {
 		
 		if (rigidbody.velocity.normalized != Vector3.zero)
 		{
-			this.gameObject.transform.up = rigidbody.velocity.normalized;
+			//this.gameObject.transform.up = rigidbody.velocity.normalized;
 		}
 	}
 }

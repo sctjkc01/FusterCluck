@@ -9,7 +9,7 @@ public class BaseEnemy : MonoBehaviour {
 	public float moveSpeed = 10;
 	public float MaxSpeed = 10;
 	
-
+	public Vector3 playerPos;
 
 	
 
