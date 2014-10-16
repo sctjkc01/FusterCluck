@@ -25,7 +25,7 @@ public class ShootyEnemy : MonoBehaviour
 
     void ChangeDirection()
     {
-		Debug.Log ("Bip");
+
         int direction = Random.Range(0, 3);
         //rigidbody.velocity = Vector3.zero;
         switch (direction)
@@ -54,6 +54,6 @@ public class ShootyEnemy : MonoBehaviour
     void LaunchBullet()
     {
         Debug.Log("I wanna shoot a bullet.");
-        Instantiate(bullet, transform.position + (transform.forward * 2), transform.rotation);
+        Instantiate(bullet, transform.position + (transform.up * 2), transform.rotation);
     }
 }
