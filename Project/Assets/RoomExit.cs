@@ -17,7 +17,7 @@ public class RoomExit : MonoBehaviour {
         if(playersTouching == null) {
             playersTouching = new List<GameObject>();
         }
-        if(other.gameObject.CompareTag("Player") && !playersTouching.Contains(other.gameObject)) {
+        if(other.gameObject.tag.Equals("Player") && !playersTouching.Contains(other.gameObject)) {
             playersTouching.Add(other.gameObject);
         }
 
@@ -29,18 +29,23 @@ public class RoomExit : MonoBehaviour {
             mcc.target += displacement * 2f;
             mcc.URHereMarkerTargetX += Mathf.RoundToInt(displacement.x * 0.2f);
             mcc.URHereMarkerTargetY -= Mathf.RoundToInt(displacement.y * 0.2f);
-        }
 
-        GameObject[] oldEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject alpha in oldEnemies) {
-            Destroy(alpha);
-        }
+            GameObject[] oldEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject alpha in oldEnemies) {
+                Destroy(alpha);
+            }
 
-        Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 2f, 2.0f, WhatIsRoom);
-        Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
-        foreach(Collider alpha in rooms) {
-            Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
-            alpha.SendMessageUpwards("SpawnEnemies");
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+            foreach(GameObject alpha in bullets) {
+                Destroy(alpha);
+            }
+
+            Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 2f, 2.0f, WhatIsRoom);
+            Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
+            foreach(Collider alpha in rooms) {
+                Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
+                alpha.SendMessageUpwards("SpawnEnemies");
+            }
         }
     }
 

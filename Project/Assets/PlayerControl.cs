@@ -63,51 +63,14 @@ public class PlayerControl : MonoBehaviour {
 		Debug.Log ("H: " + horizontal + ", V: " + vertical);
 
 		//Animation stuff
-		if(horizontal > 0)
-		{
-			if(vertical > 0)
-			{
-				animator.SetInteger("Direction", 1);
-			}
-			else if(vertical < 0)
-			{
-				animator.SetInteger("Direction", 3);
-			}
-			else
-			{
-				animator.SetInteger("Direction", 2);
-			}
-		}
-		else if (horizontal < 0)
-		{
-			if(vertical > 0)
-			{
-				animator.SetInteger("Direction", 7);
-			}
-			else if(vertical < 0)
-			{
-				animator.SetInteger("Direction", 5);
-			}
-			else
-			{
-				animator.SetInteger("Direction", 6);
-			}
-		}
-		else
-		{
-			if(vertical > 0)
-			{
-				animator.SetInteger("Direction", 0);
-			}
-			else if(vertical < 0)
-			{
-				animator.SetInteger("Direction", 4);
-			}
-			else
-			{
-				animator.SetInteger("Direction", 0);
-			}
-		}
+        if(Mathf.Abs(horizontal) > 0.05 || Mathf.Abs(vertical) > 0.05) {
+            Debug.Log("Walking...");
+            animator.SetBool("Walking", true);
+            animator.SetFloat("DirX", horizontal);
+            animator.SetFloat("DirY", vertical);
+        } else {
+            animator.SetBool("Walking", false);
+        }
 
 
 		force = new Vector3(horizontal, vertical, 0);
