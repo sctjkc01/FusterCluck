@@ -25,8 +25,9 @@ public class ShootyEnemy : MonoBehaviour
 
     void ChangeDirection()
     {
+		Debug.Log ("Bip");
         int direction = Random.Range(0, 3);
-        rigidbody.velocity = Vector3.zero;
+        //rigidbody.velocity = Vector3.zero;
         switch (direction)
         {
             case 0:
