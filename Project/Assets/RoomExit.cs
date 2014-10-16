@@ -31,8 +31,15 @@ public class RoomExit : MonoBehaviour {
             mcc.URHereMarkerTargetY -= Mathf.RoundToInt(displacement.y * 0.2f);
         }
 
+        GameObject[] oldEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject alpha in oldEnemies) {
+            Destroy(alpha);
+        }
+
         Collider[] rooms = Physics.OverlapSphere(displacement * 2f, 2.0f, WhatIsRoom);
+        Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
         foreach(Collider alpha in rooms) {
+            Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
             alpha.SendMessageUpwards("SpawnEnemies");
         }
     }
