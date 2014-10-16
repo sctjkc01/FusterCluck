@@ -81,7 +81,7 @@ public class SudokuPuzzle {
 
     void createPuzzle()
 	{
-	    for (int i = 1; i <= size; i++)
+	    for (int i = 1; i < size; i++)
 	    {
 	        bool check = false;
 
