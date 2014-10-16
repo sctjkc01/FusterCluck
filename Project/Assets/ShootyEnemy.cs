@@ -51,14 +51,7 @@ public class ShootyEnemy : MonoBehaviour
         }
     }
 
-	void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.layer == 9)
-		{
-			Destroy(this.gameObject);
-		}
 
-	}
 
     void LaunchBullet()
     {
