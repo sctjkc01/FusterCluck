@@ -16,7 +16,6 @@ public class RushEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		enemy.playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 		this.Move();
 	}
 
