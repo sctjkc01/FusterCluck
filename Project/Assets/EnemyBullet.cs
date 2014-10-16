@@ -8,7 +8,7 @@ public class EnemyBullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rigidbody.AddForce(transform.forward * speed, ForceMode.Impulse);
+        rigidbody.AddForce(transform.up * speed, ForceMode.Impulse);
 	}
 	
 	// Update is called once per frame

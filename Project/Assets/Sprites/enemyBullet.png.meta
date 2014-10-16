@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: ebc859685f08359429e4439a6d73cdea
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: enemyBullet
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

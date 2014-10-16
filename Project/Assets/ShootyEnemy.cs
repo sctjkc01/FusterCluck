@@ -31,25 +31,34 @@ public class ShootyEnemy : MonoBehaviour
         switch (direction)
         {
             case 0:
-                //transform.forward = new Vector3(0, 1, 0);
+                transform.up = new Vector3(0, 1, 0);
                 rigidbody.AddForce(0, 1, 0, ForceMode.Impulse);
                 break;
             case 1:
-                //transform.forward = new Vector3(0, -1, 0);
+				transform.up = new Vector3(0, -1, 0);
                 rigidbody.AddForce(0, -1, 0, ForceMode.Impulse);
                 break;
             case 2:
-                //transform.forward = new Vector3(1, 0, 0);
+				transform.up = new Vector3(1, 0, 0);
                 rigidbody.AddForce(1, 0, 0, ForceMode.Impulse);
                 break;
             case 3:
-                //transform.forward = new Vector3(-1, 0, 0);
+			transform.up = new Vector3(-1, 0, 0);
                 rigidbody.AddForce(-1, 0, 0, ForceMode.Impulse);
                 break;
             default:
                 break;
         }
     }
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.layer == 9)
+		{
+			Destroy(this.gameObject);
+		}
+
+	}
 
     void LaunchBullet()
     {
