@@ -9,9 +9,16 @@ public class BaseEnemy : MonoBehaviour {
 	public int moveSpeed = 10;
 
 	public Vector3 playerPos;
+	
 
 	// Use this for initialization
 	public void Start () {
 
 	}
+
+	public void update () 
+	{
+
+	}
+
 }

@@ -3,7 +3,6 @@ using System.Collections;
 
 
 [RequireComponent(typeof(BaseEnemy))]
-[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Rigidbody))]
 public class RushEnemy : MonoBehaviour {
 
@@ -27,6 +26,6 @@ public class RushEnemy : MonoBehaviour {
 		dv -= rigidbody.velocity;
 		dv.y = 0;
 
-		rigidbody.velocity = dv;
+		rigidbody.AddForce(dv, ForceMode.Impulse);
 	}
 }

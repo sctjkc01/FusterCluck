@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent(typeof(BaseEnemy))]
-[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Rigidbody))]
 //Shooty Enemy. Effectively an octorok.
 public class ShootyEnemy : MonoBehaviour
