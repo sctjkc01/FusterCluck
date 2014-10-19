@@ -81,24 +81,26 @@ public class SudokuPuzzle {
 
     void createPuzzle()
 	{
-	    for (int i = 1; i < size; i++)
-	    {
-	        bool check = false;
-
-            do
+        List<int> num = new List<int>();
+        
+        for (int i = 0; i < size; i++)
+        {
+            num.Add(i + 1);
+        }
+        
+        for (int i = 0; i < size; i += (int)Math.Sqrt(size))
+        {
+            for (int j = 0; j < size; j += (int)Math.Sqrt(size))
             {
-                int cellX = Random.Range(0, size);
-                int cellY = Random.Range(0, size);
-
-                if (canChange[cellX, cellY] != false)
-                {
-                    canChange[cellX, cellY] = false;
-                    tiles[cellX, cellY] = i;
-                    check = true;
-                }
+                int quad1 = Random.Range(0, (int)Math.Sqrt(size));
+                int quad2 = Random.Range(0, (int)Math.Sqrt(size));
+                int index = Random.Range(0, num.Count);
+        
+                tiles[i + quad1, j + quad2] = num[index];
+                canChange[i + quad1, j + quad2] = false;
+                num.RemoveAt(index);
             }
-            while (!check);
-	    }
+        }
 	}
 
     bool colTest() {
