@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour {
 
 	public Animator animator;
 
+	public int health; 
+
 	void Start(){
 		animator = this.GetComponent<Animator>();
 	}
@@ -79,31 +81,16 @@ public class PlayerControl : MonoBehaviour {
 		force = Vector3.ClampMagnitude(force,speed);
 
 		rigidbody.velocity = force;
-
-		/*
-		if (force != Vector3.zero)
-		{
-			this.rigidbody.AddForce(force, ForceMode.VelocityChange);
 		
-			
-		}
-		else
-		{
-			this.rigidbody.velocity = Vector3.zero;
-		}
 
-		if (this.rigidbody.velocity.magnitude > MAX_SPEED)
-		{
-			this.rigidbody.velocity = Vector3.ClampMagnitude(this.rigidbody.velocity, MAX_SPEED);
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.tag.Equals ("Enemy") || collision.gameObject.tag.Equals ("Bullet")) {
+			health --;
 		}
-		 */
-
-
-		//Debug.Log(rigidbody.velocity.normalized);
-		
-		if (rigidbody.velocity.normalized != Vector3.zero)
-		{
-			//this.gameObject.transform.up = rigidbody.velocity.normalized;
+		if (health <= 0) {
+			//do death stuff
 		}
 	}
 }
