@@ -9,12 +9,7 @@ public class RoomManager : MonoBehaviour {
     public SudokuPuzzle puzzle;
     public List<RoomTheme> themes;
 
-    void Start() {
-        Initialize(); // In case we want to allow the user to change the size of the puzzle...
-    }
-
-
-    void Initialize() {
+    public void Initialize() {
 
         puzzle = new SudokuPuzzle(puzzleSize);
         GameObject.Find("Minimap").GetComponent<MinimapControl>().Init(puzzle);
