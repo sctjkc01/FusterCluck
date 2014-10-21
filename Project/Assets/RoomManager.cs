@@ -76,6 +76,11 @@ public class SudokuPuzzle {
 
         set {
             tiles[i, j] = value;
+
+            if (colTest() && rowTest() && chunkTest())
+            {
+                Debug.Log("TRUE");
+            }
         }
     }
 
