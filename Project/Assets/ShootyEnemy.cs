@@ -13,8 +13,8 @@ public class ShootyEnemy : MonoBehaviour
     void Start()
     {
         this.enemy = gameObject.GetComponent<BaseEnemy>();
-        InvokeRepeating("ChangeDirection", 0.1f, 3);
-        InvokeRepeating("LaunchBullet", 0.1f, 2.5f);
+        InvokeRepeating("ChangeDirection", 0.1f, 2.0f);
+        InvokeRepeating("LaunchBullet", 0.1f, 1.0f);
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class ShootyEnemy : MonoBehaviour
     void ChangeDirection()
     {
 
-        int direction = Random.Range(0, 3);
+        int direction = Random.Range(0, 4);
         //rigidbody.velocity = Vector3.zero;
         switch (direction)
         {
@@ -56,6 +56,14 @@ public class ShootyEnemy : MonoBehaviour
     void LaunchBullet()
     {
         Debug.Log("I wanna shoot a bullet.");
-        Instantiate(bullet, transform.position + (transform.up * 2), transform.rotation);
+        Instantiate(bullet, transform.position + (transform.up * .5f), transform.rotation);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            ChangeDirection();
+        }
     }
 }
