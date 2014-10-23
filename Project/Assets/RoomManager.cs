@@ -4,6 +4,11 @@ using System;
 using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour {
+	public static List<string> colorValues = new List<string>{
+		"FF0000", "00FF00", "0000FF", "FFFF00", "FF00FF", "00FFFF", "000000", 
+		"800000", "008000", "000080", "808000", "800080", "008080", "808080", 
+	};
+
     public int puzzleSize;
 
     public SudokuPuzzle puzzle;
@@ -17,6 +22,11 @@ public class RoomManager : MonoBehaviour {
 
         for(int cluster = 0; cluster < puzzleSize * puzzleSize; cluster++) {
             RoomTheme thisTheme = Pick(themes);
+			for(int i = 0; i < thisTheme.rooms.Capacity; i++)
+			{
+				thisTheme.rooms[i].transform.Find("Floor").GetComponent<SpriteRenderer>().color = HexToColor(Pick(colorValues));
+			}
+
 
             for(int i = 0; i < puzzleSize * puzzleSize; i++) {
                 int x = i % puzzleSize + (cluster % puzzleSize) * puzzleSize;
@@ -37,6 +47,13 @@ public class RoomManager : MonoBehaviour {
         if(from.Count == 0) throw new Exception("Cannot pick from an empty list!");
         return (from[Random.Range(0, from.Count)]);
     }
+	public Color HexToColor(string hex)
+	{
+		byte r = byte.Parse(hex.Substring(0,2), System.Globalization.NumberStyles.HexNumber);
+		byte g = byte.Parse(hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
+		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+		return new Color32(r,g,b, 255);
+	}
 }
 
 [System.Serializable]
