@@ -23,7 +23,7 @@ public class RoomExit : MonoBehaviour {
 
         if(playersTouching.Count == GameObject.FindGameObjectsWithTag("Player").Length) {
             foreach(GameObject alpha in playersTouching) {
-                alpha.transform.Translate(displacement * 0.5f, Space.World);
+                alpha.transform.Translate(displacement * 0.7f, Space.World);
             }
             playersTouching.Clear();
             mcc.target += displacement * 2f;
@@ -40,12 +40,15 @@ public class RoomExit : MonoBehaviour {
                 Destroy(alpha);
             }
 
-            Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 2f, 2.0f, WhatIsRoom);
+            Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 1.5f, 2.0f, WhatIsRoom);
             Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
             foreach(Collider alpha in rooms) {
-                Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
-                alpha.SendMessageUpwards("SpawnEnemies");
+                if(alpha.gameObject.tag.Equals("Room", System.StringComparison.InvariantCultureIgnoreCase)) {
+                    Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
+                    alpha.SendMessageUpwards("SpawnEnemies");
+                }
             }
+            playersTouching.Clear();
         }
     }
 

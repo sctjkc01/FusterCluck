@@ -1,14 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RushEnemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainCameraControl.cs">
     <Files>
-      <File FileName="Assets\RushEnemy.cs" Line="32" Column="1" />
-      <File FileName="Assets\PlayerControl.cs" Line="21" Column="43" />
-      <File FileName="Assets\BaseEnemy.cs" Line="18" Column="15" />
+      <File FileName="Assets\RushEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\PlayerControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\BaseEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\RoomManager.cs" Line="77" Column="1" />
+      <File FileName="Assets\RoomExit.cs" Line="43" Column="99" />
+      <File FileName="Assets\MainCameraControl.cs" Line="28" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="MainCameraControl.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="D:\GitHub\FusterCluck\Project\Assets\RoomExit.cs" line="25" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
