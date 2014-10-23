@@ -43,7 +43,6 @@ public class PlayerAttack : MonoBehaviour {
         if(collision.gameObject.tag.Equals("Enemy")) {
             Destroy(collision.gameObject);
         }
-
     }
 
 }

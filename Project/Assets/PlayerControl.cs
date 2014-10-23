@@ -14,10 +14,13 @@ public class PlayerControl : MonoBehaviour {
 	private float _attackTimer;
 
 	public GameObject attackBox;
+    public LayerMask WhatIsButton;
 
 	public Animator animator;
 
-	public int health; 
+	public int health;
+
+    public Vector3 facing;
 
 	void Start(){
 		animator = this.GetComponent<Animator>();
@@ -41,8 +44,20 @@ public class PlayerControl : MonoBehaviour {
 			{
 				attackBox.SetActive(true);
 				_attackTimer = ATTACKTIME;
-			}
+            }
 		}
+
+        if(Input.GetButtonDown("Fire1")) {
+            float horizontal = facing.x;
+            float vertical = facing.y;
+            Debug.DrawLine(transform.position, transform.position + new Vector3(horizontal, vertical) * 0.5f);
+            Collider[] test = Physics.OverlapSphere (transform.position + new Vector3(horizontal, vertical) * 0.5f, 0.5f);
+            foreach(Collider t in test) {
+                if(t.GetComponent<ButtonIncrement>() != null) {
+                    t.GetComponent<ButtonIncrement>().rc.IncrementNumber();
+                }
+            }
+        }
 
 
 		if(_attackTimer <= 0)
@@ -64,6 +79,7 @@ public class PlayerControl : MonoBehaviour {
 
 		//Animation stuff
         if(Mathf.Abs(horizontal) > 0.05 || Mathf.Abs(vertical) > 0.05) {
+            facing = new Vector3(horizontal, vertical);
             animator.SetBool("Walking", true);
             animator.SetFloat("DirX", horizontal);
             animator.SetFloat("DirY", vertical);
