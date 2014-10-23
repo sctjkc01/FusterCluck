@@ -9,8 +9,9 @@ public class RoomManager : MonoBehaviour {
     public SudokuPuzzle puzzle;
     public List<RoomTheme> themes;
 
-    public void Initialize() {
+    public static GameOver GameOverRef;
 
+    public void Initialize() {
         puzzle = new SudokuPuzzle(puzzleSize);
         GameObject.Find("Minimap").GetComponent<MinimapControl>().Init(puzzle);
 
@@ -70,11 +71,14 @@ public class SudokuPuzzle {
         }
 
         set {
+            Debug.Log("Setting [" + i + "," + j + "] to " + value);
             tiles[i, j] = value;
 
-            if (colTest() && rowTest() && chunkTest())
-            {
-                Debug.Log("TRUE");
+            if(colTest() && rowTest() && chunkTest()) {
+                Debug.Log("Tests passed.");
+                RoomManager.GameOverRef.GameDone(true);
+            } else {
+                Debug.Log("Tests failed.");
             }
         }
     }
@@ -141,17 +145,19 @@ public class SudokuPuzzle {
 
     bool chunkTest() 
     {
-	    for (int i = 0; i < size; i += (int)Math.Sqrt(size))
+        int sqrtSize = (int)Math.Sqrt(size);
+
+	    for (int i = 0; i < size; i += sqrtSize)
 	    {
-	        for (int j = 0; j < size; j += (int)Math.Sqrt(size))
+	        for (int j = 0; j < size; j += sqrtSize)
 	        {
 	            int sum = 0;
 	            int fact = 1;
 
-	            for (int k = 0; k < size; k++) {
-	                for (var l = 0; l < size; l++) {
+	            for (int k = 0; k < sqrtSize; k++) {
+	                for (var l = 0; l < sqrtSize; l++) {
 	                    sum += tiles[i + k, j + l];
-	                    fact *= tiles[i + k, k + l];
+	                    fact *= tiles[i + k, j + l];
 	                }
 	            }
 

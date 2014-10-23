@@ -23,7 +23,7 @@ public class RoomExit : MonoBehaviour {
 
         if(playersTouching.Count == GameObject.FindGameObjectsWithTag("Player").Length) {
             foreach(GameObject alpha in playersTouching) {
-                alpha.transform.Translate(displacement, Space.World);
+                alpha.transform.Translate(displacement * 0.5f, Space.World);
             }
             playersTouching.Clear();
             mcc.target += displacement * 2f;

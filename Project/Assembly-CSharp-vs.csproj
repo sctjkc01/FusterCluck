@@ -50,6 +50,8 @@
      <Compile Include="Assets\ButtonIncrement.cs" />
      <Compile Include="Assets\EnemyBullet.cs" />
      <Compile Include="Assets\EnemySpawner.cs" />
+     <Compile Include="Assets\GameOver.cs" />
+     <Compile Include="Assets\GameRestart.cs" />
      <Compile Include="Assets\MainCameraControl.cs" />
      <Compile Include="Assets\MinimapControl.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\LanguageSelection.cs" />

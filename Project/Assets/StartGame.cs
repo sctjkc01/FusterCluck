@@ -15,6 +15,7 @@ public class StartGame : MonoBehaviour {
     }
 
     public void StartTheGame(int size) {
+        RoomManager.GameOverRef = cam.GetComponent<GameOver>();
         rm.puzzleSize = size;
         rm.Initialize();
 
