@@ -62,8 +62,6 @@ public class PlayerControl : MonoBehaviour {
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		float vertical = Input.GetAxisRaw("Vertical");
 
-		Debug.Log ("H: " + horizontal + ", V: " + vertical);
-
 		//Animation stuff
         if(Mathf.Abs(horizontal) > 0.05 || Mathf.Abs(vertical) > 0.05) {
             animator.SetBool("Walking", true);
@@ -91,6 +89,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 		if (health <= 0) {
 			//do death stuff
+			RoomManager.GameOverRef.GameDone(false);
 		}
 	}
 }

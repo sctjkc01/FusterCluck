@@ -1,13 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainCameraControl.cs">
     <Files>
       <File FileName="Assets\RushEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlayerControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\PlayerControl.cs" Line="77" Column="18" />
       <File FileName="Assets\BaseEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\RoomManager.cs" Line="77" Column="1" />
+      <File FileName="Assets\RoomManager.cs" Line="79" Column="37" />
       <File FileName="Assets\RoomExit.cs" Line="43" Column="99" />
-      <File FileName="Assets\MainCameraControl.cs" Line="28" Column="1" />
+      <File FileName="Assets\MainCameraControl.cs" Line="27" Column="3" />
+      <File FileName="Assets\PlayerAttack.cs" Line="45" Column="10" />
+      <File FileName="Assets\StartGame.cs" Line="18" Column="47" />
+      <File FileName="Assets\MinimapControl.cs" Line="19" Column="45" />
+      <File FileName="Assets\GameRestart.cs" Line="1" Column="1" />
+      <File FileName="Assets\GameOver.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
