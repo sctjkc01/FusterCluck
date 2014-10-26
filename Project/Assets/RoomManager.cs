@@ -84,18 +84,24 @@ public class SudokuPuzzle {
     }
 
     public int this[int i, int j] {
-        get {
+        get 
+        {
 			return tiles[i, j];
         }
 
-        set {
+        set 
+        {
             // Debug.Log("Setting [" + i + "," + j + "] to " + value);
             tiles[i, j] = value;
 
-            if(colTest() && rowTest() && chunkTest()) {
+            if(colTest() && rowTest() && chunkTest()) 
+            {
                 Debug.Log("Tests passed.");
                 RoomManager.GameOverRef.GameDone(true);
-            } else {
+            } 
+            
+            else 
+            {
                 Debug.Log("Tests failed.");
             }
         }
@@ -105,11 +111,11 @@ public class SudokuPuzzle {
 	{
         List<int> num = new List<int>();
         
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size - 1; i++)
         {
             num.Add(i + 1);
         }
-        
+
         for (int i = 0; i < size; i += (int)Math.Sqrt(size))
         {
             for (int j = 0; j < size; j += (int)Math.Sqrt(size))
@@ -117,10 +123,13 @@ public class SudokuPuzzle {
                 int quad1 = Random.Range(0, (int)Math.Sqrt(size));
                 int quad2 = Random.Range(0, (int)Math.Sqrt(size));
                 int index = Random.Range(0, num.Count);
-        
-                tiles[i + quad1, j + quad2] = num[index];
-                canChange[i + quad1, j + quad2] = false;
-                num.RemoveAt(index);
+
+                if (num.Count != 0)
+                {
+                    tiles[i + quad1, j + quad2] = num[index];
+                    canChange[i + quad1, j + quad2] = false;
+                    num.RemoveAt(index);
+                }
             }
         }
 	}
