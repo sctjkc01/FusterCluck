@@ -41,10 +41,10 @@ public class RoomExit : MonoBehaviour {
             }
 
             Collider[] rooms = Physics.OverlapSphere(transform.position + (Vector3)displacement * 1.5f, 2.0f, WhatIsRoom);
-            Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
+            // Debug.Log("Came across " + rooms.Length + " room(s) after room x-fer.");
             foreach(Collider alpha in rooms) {
                 if(alpha.gameObject.tag.Equals("Room", System.StringComparison.InvariantCultureIgnoreCase)) {
-                    Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
+                    // Debug.Log("Came across " + alpha.gameObject.name + " after room x-fer.  Calling SpawnEnemies...");
                     alpha.SendMessageUpwards("SpawnEnemies");
                 }
             }

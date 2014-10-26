@@ -41,6 +41,7 @@ public class RoomManager : MonoBehaviour {
         }
 
         GameObject.Find("Main Camera").GetComponent<MainCameraControl>().target = Vector2.zero;
+        MainCameraControl.Started = true;
     }
 
     T Pick<T>(List<T> from) {
@@ -88,7 +89,7 @@ public class SudokuPuzzle {
         }
 
         set {
-            Debug.Log("Setting [" + i + "," + j + "] to " + value);
+            // Debug.Log("Setting [" + i + "," + j + "] to " + value);
             tiles[i, j] = value;
 
             if(colTest() && rowTest() && chunkTest()) {

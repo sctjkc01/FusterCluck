@@ -71,7 +71,7 @@ public class MinimapControl : MonoBehaviour {
         label.ambigiousFont = UILabelFont;
         label.height = Mathf.RoundToInt(cellSize.y - 2);
         label.width = Mathf.RoundToInt(cellSize.x - 2);
-        label.fontSize = 24;
+        label.fontSize = 48;
         label.text = " ";
         label.maxLineCount = 1;
         label.depth = 98;

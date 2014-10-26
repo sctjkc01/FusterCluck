@@ -17,7 +17,7 @@ public class RoomControl : MonoBehaviour {
         puzzleRef = puzz;
         this.x = x;
         this.y = y;
-        Debug.Log(x + ", " + y, this.gameObject);
+        // Debug.Log(x + ", " + y, this.gameObject);
 
         #region DoorExit-Setting
         NorthDoor.Init(new Vector2(0f, 5f));
