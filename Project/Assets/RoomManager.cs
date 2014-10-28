@@ -5,8 +5,8 @@ using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviour {
 	public static List<string> colorValues = new List<string>{
-		"FF0000", "00FF00", "0000FF", "FFFF00", "FF00FF", "00FFFF", "000000", 
-		"800000", "008000", "000080", "808000", "800080", "008080", "808080", 
+		"FF0000", "00FF00", "0000FF", "FFFF00", "FF00FF", "00FFFF", "FFFFFF",
+		"00A000", "A000A0", "00A0A0", "A0A0A0", 
 	};
 
     public int puzzleSize;
@@ -19,12 +19,13 @@ public class RoomManager : MonoBehaviour {
     public void Initialize() {
         puzzle = new SudokuPuzzle(puzzleSize);
         GameObject.Find("Minimap").GetComponent<MinimapControl>().Init(puzzle);
+		Shuffle (colorValues);
 
         for(int cluster = 0; cluster < puzzleSize * puzzleSize; cluster++) {
             RoomTheme thisTheme = Pick(themes);
 			for(int i = 0; i < thisTheme.rooms.Capacity; i++)
 			{
-				thisTheme.rooms[i].transform.Find("Floor").GetComponent<SpriteRenderer>().color = HexToColor(Pick(colorValues));
+				thisTheme.rooms[i].transform.Find("Floor").GetComponent<SpriteRenderer>().color = HexToColor(colorValues[cluster]);
 			}
 
 
@@ -54,6 +55,17 @@ public class RoomManager : MonoBehaviour {
 		byte g = byte.Parse(hex.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
 		byte b = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
 		return new Color32(r,g,b, 255);
+	}
+	public void Shuffle(List<string> list)
+	{
+		for (int i = 0; i < list.Count; i++) {
+			string temp = list[i];
+			int randomIndex = Random.Range(i, list.Count);
+			list[i] = list[randomIndex];
+			list[randomIndex] = temp;
+		}
+		
+
 	}
 }
 
